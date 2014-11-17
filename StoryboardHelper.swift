@@ -2,8 +2,8 @@
 
 import Foundation
 
-let extensionHeader = "// Auto generated file from StoryboardHelper, any manual changes will be lost.\n\nimport UIKit\n\npublic extension UIStoryboard {"
-let functionTemplate = "\n\n    class func $NAME$Storyboard() -> UIStoryboard { \n        return UIStoryboard(name: \"$NAME$\", bundle:nil)\n    }"
+let extensionHeader = "// Auto generated file from StoryboardConstants, any manual changes will be lost.\n\nimport UIKit\n\npublic extension UIStoryboard {"
+let functionTemplate = "\n\n    class func $NAME$Storyboard() -> UIStoryboard { \n        return UIStoryboard(name: \"$FILENAME$\", bundle:nil)\n    }"
 let extensionFooter = "\n\n}"
 
 let totalArguments = Int(C_ARGC) - 1
@@ -14,7 +14,7 @@ if totalArguments == 2 {
     outputPath = String.fromCString(C_ARGV[2])!
 } else {
     println("Usage:")
-    println("    $ StoryboardHelper INPUT_PATH OUTPUT_PATH")
+    println("    $ StoryboardHelper.swift INPUT_PATH OUTPUT_PATH")
     exit(1)
 }
 
@@ -40,8 +40,13 @@ if let fileHandle = NSFileHandle(forWritingAtPath: outputPath) {
     for storyboardPath in storyboardArray {
         fileHandle.seekToEndOfFile()
         let storyboardFileName = storyboardPath.lastPathComponent.stringByDeletingPathExtension
-        let storyboardMethod = functionTemplate.stringByReplacingOccurrencesOfString("$NAME$", withString: storyboardFileName, options: NSStringCompareOptions.LiteralSearch, range: nil)
-        let storyboardPathData = storyboardMethod.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)!
+        let firstCharacterIndex = advance(storyboardFileName.startIndex, 1)
+        let firstCharacter = storyboardFileName.substringToIndex(firstCharacterIndex).lowercaseString
+        let restOfFileName = storyboardFileName.substringFromIndex(firstCharacterIndex)
+        let camelCaseFileName = firstCharacter + restOfFileName
+        let storyboardMethodWithName = functionTemplate.stringByReplacingOccurrencesOfString("$NAME$", withString: camelCaseFileName, options: NSStringCompareOptions.LiteralSearch, range: nil)
+        let storyboardMethodWithFileName = storyboardMethodWithName.stringByReplacingOccurrencesOfString("$FILENAME$", withString: storyboardFileName, options: NSStringCompareOptions.LiteralSearch, range: nil)
+        let storyboardPathData = storyboardMethodWithFileName.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)!
         fileHandle.writeData(storyboardPathData)
     }
 

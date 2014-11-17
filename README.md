@@ -10,11 +10,11 @@ import UIKit
 
 public extension UIStoryboard {
 
-    class func MainStoryboard() -> UIStoryboard {
+    class func mainStoryboard() -> UIStoryboard {
         return UIStoryboard(name: "Main", bundle:nil)
     }
 
-    class func AnotherStoryboard() -> UIStoryboard {
+    class func anotherStoryboard() -> UIStoryboard {
         return UIStoryboard(name: "Another", bundle:nil)
     }
 }
