@@ -1,6 +1,6 @@
 # StoryboardHelper
 
-[![License](http://img.shields.io/badge/license-MIT-green.svg?style=flat)](https://github.com/mmorey/MDMCoreData/blob/master/LICENSE)
+[![License](http://img.shields.io/badge/license-MIT-green.svg?style=flat)](https://github.com/mmorey/StoryboardHelper/blob/master/LICENSE.md)
 [![Twitter: @xzolian](https://img.shields.io/badge/contact-@xzolian-blue.svg?style=flat)](https://twitter.com/xzolian)
 
 StoryboardHelper is a Swift script that searches a given input path for Storyboard files and generates helpful access functions as a UIStoryboard extension.
@@ -19,6 +19,8 @@ public extension UIStoryboard {
     }
 }
 ```
+
+You now have code autocompletion and can avoid using cumbersome strings throughout your project.
 
 ## Installation
 
@@ -71,4 +73,4 @@ $ ./StoryboardHelper.swift ExampleProjectPath ExampleProjectPath/UIStoryboardExt
 
 ## License
 
-StoryboardHelper is available under MIT License. See the LICENSE.md file for more info.
+StoryboardHelper is available under MIT License. See the [LICENSE.md](https://github.com/mmorey/StoryboardHelper/blob/master/LICENSE.md) file for more info.
