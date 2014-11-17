@@ -2,7 +2,7 @@
 
 import Foundation
 
-let extensionHeader = "// Auto generated file from StoryboardConstants, any manual changes will be lost.\n\nimport UIKit\n\npublic extension UIStoryboard {"
+let extensionHeader = "// Auto generated file from StoryboardHelper, any manual changes will be lost.\n\nimport UIKit\n\npublic extension UIStoryboard {"
 let functionTemplate = "\n\n    class func $NAME$Storyboard() -> UIStoryboard { \n        return UIStoryboard(name: \"$NAME$\", bundle:nil)\n    }"
 let extensionFooter = "\n\n}"
 
